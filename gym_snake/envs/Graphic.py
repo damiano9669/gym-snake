@@ -1,3 +1,7 @@
+from os import environ
+
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+
 import pygame
 
 from gym_snake.envs.RainbowColors import RainbowColors
@@ -35,10 +39,8 @@ class Graphic:
 
         # pygame.time.set_timer(1, self.speed)
 
-    def draw(self, snake_arcade, circles=None):
+    def draw(self, snake_arcade):
         """
-
-        :param circles:
         :param snake_arcade: (snake_arcade object)
         :return:
         """
@@ -54,20 +56,8 @@ class Graphic:
                              (snake_arcade.fruit[0] * self.scale,
                               snake_arcade.fruit[1] * self.scale))
 
-        if circles is not None:
-            self.draw_circles(circles)
-
         pygame.display.flip()
         return pygame.surfarray.array3d(self.screen)
 
-    def draw_circles(self, circles):
-
-        for rho, circle in enumerate(circles):
-            for point in circle:
-                if 0 <= point[0] < self.array_size and 0 <= point[1] < self.array_size:
-                    label = self.font.render(str(rho), 1, (255, 255, 255))
-                    self.screen.blit(label, (point[0] * self.scale,
-                                             point[1] * self.scale))
-
-    def close(selr):
+    def close(self):
         pygame.quit()
