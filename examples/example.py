@@ -5,23 +5,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 env = gym.make('gym_snake:snake-v0',
-               array_size=20, scale_factor=50)
+               array_size=20, render_scale_factor=50)
 
 print(f'{env.action_space = }')
 print(f'{env.observation_space = }')
+print(f'{env.get_available_actions() = }')
 
 env.reset()
 rewards = []
 
 done = False
 while not done:
-    action = np.random.choice(env.snake.ACTIONS)
+    action = np.random.choice(env.get_available_actions())
     print(f'{action = }')
     observation, reward, done, _ = env.step(action)
     print(f'{reward = } - {done = }')
 
     time.sleep(1)
     rewards.append(reward)
+    env.render()
     print('-' * 50)
 
 print(f'{reward = } - {done = }')
