@@ -19,9 +19,10 @@ while not done:
     action = np.random.choice(env.get_available_actions())
     print(f'{action = }')
     observation, reward, done, _ = env.step(action)
+    print(f'{observation = }')
     print(f'{reward = } - {done = }')
 
-    time.sleep(1)
+    time.sleep(0.1)
     rewards.append(reward)
     env.render()
     print('-' * 50)
